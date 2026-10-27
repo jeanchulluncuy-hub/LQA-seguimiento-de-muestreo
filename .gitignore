@@ -1,0 +1,15 @@
+# Entorno virtual
+.venv/
+env/
+venv/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+
+# Credenciales y claves privadas (¡Muy importante por seguridad!)
+credenciales.json
+
+# Archivos de configuración de VS Code o IDEs
+.vscode/
+.idea/

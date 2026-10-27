@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Registro de Clientes</title>
+    <!-- Carga de Plotly JS -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+
+    <!-- ENCABEZADO CENTRADO CON ÍCONO -->
+    <header class="encabezado">
+        <div class="encabezado-titulo">
+            <span class="icono-dashboard">📊</span>
+            <h1>Dashboard de Registro de Clientes</h1>
+        </div>
+        <p>Análisis en tiempo real desde Google Sheets</p>
+    </header>
+
+    <main class="contenedor-principal">
+        <!-- SECCIÓN DE KPIS -->
+        <section class="contenedor-kpis">
+            <div class="tarjeta-kpi">
+                <h3>Total de Registros</h3>
+                <h2>{{ total_registros }}</h2>
+                <p>Registros encontrados</p>
+            </div>
+            <div class="tarjeta-kpi">
+                <h3>Total Personas</h3>
+                <h2>{{ total_personas }}</h2>
+                <p>Clientes independientes</p>
+            </div>
+            <div class="tarjeta-kpi">
+                <h3>Total Empresas</h3>
+                <h2>{{ total_empresas }}</h2>
+                <p>Empresas registradas</p>
+            </div>
+            <div class="tarjeta-kpi">
+                <h3>% Corporativo</h3>
+                <h2>{{ porcentaje_empresas }}%</h2>
+                <p>Proporción de empresas</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE 6 GRÁFICOS -->
+        <section class="contenedor-graficos">
+            <div class="tarjeta-grafico">{{ g1 | safe }}</div>
+            <div class="tarjeta-grafico">{{ g2 | safe }}</div>
+            <div class="tarjeta-grafico">{{ g3 | safe }}</div>
+            <div class="tarjeta-grafico">{{ g4 | safe }}</div>
+            <div class="tarjeta-grafico">{{ g5 | safe }}</div>
+            <div class="tarjeta-grafico">{{ g6 | safe }}</div>
+        </section>
+
+        <!-- VISTA PREVIA DE DATOS -->
+        <section class="contenedor-tabla">
+            <h2>Vista Previa de Datos (Últimos Registros)</h2>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            {% for col in columnas %}
+                                <th>{{ col }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for fila in filas %}
+                            <tr>
+                                {% for celda in fila %}
+                                    <td>{{ celda }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
